@@ -1,5 +1,5 @@
 # BashChat
-<p>The best chat website free open source</p>
+<p>The best chat website free and open-source</p>
 <h2>*Please star if you liked</h2>
 <img src="http://i.imgur.com/8pkpBlX.png" alt="BashChat">
 <img src="http://i.imgur.com/k1HP599.png" alt="BashChat">
