@@ -1,0 +1,16 @@
+{
+  "name": "BashChat",
+  "version": "1.0.0",
+  "description": "Chats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeet",
+  "license": "ISC",
+  "dependencies":{
+    "mongoose":"*",
+    "socket.io":"*",
+    "express":"*"
+  }
+}

@@ -1,0 +1,222 @@
+<html >
+<head>
+  <title>BashChat</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
+
+  <style>
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e1e1e1;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #000000;
+  }
+  ::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-track:hover {
+    background: #666666;
+  }
+  ::-webkit-scrollbar-track:active {
+    background: #333333;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+.scroll {
+   width: 200px; height: 400px;
+   overflow: hidden;
+}
+    #chat{
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: auto;
+      min-height: 57%;
+      max-height: 60%;
+      margin-left: 30px;
+      margin-bottom: 20px;
+
+    }
+    #contentWrap{
+      display: none;
+      font-size: 20px;
+    }
+    #chatWrap{
+      margin-left: 20px;
+      padding-top: 10px;
+      margin-right: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-width: medium;
+      border-radius: 7px;
+      float: left;
+      color: #D3D3D3;
+      margin-bottom: 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    body, .jumbotron{
+      font-family: 'Pangolin', cursive;
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background-image: url(https://images.pexels.com/photos/63917/pexels-photo-63917.jpeg?w=1920&h=1080&auto=compress&cs=tinysrgb);
+    }
+    .error{
+      color: red;
+    }
+    .whisper{
+      color: gray;
+      font-style: italic;
+    }
+  .jeet3{
+    font-size: 20px;
+    color: lightseagreen;
+    font-weight: bold;
+  }
+  #footer {
+		text-align: center;
+		padding: 4em 0 4em 0;
+	}
+		#footer:before {
+			content: '';
+			border-top: solid 1px rgba(255, 255, 255, 0.25);
+			width: 10em;
+			display: block;
+			margin: 0 auto 3em auto;
+		}
+    .size{
+      height: 40px;
+    }
+  h1{
+    font-size: 70px;
+    margin-top: 70px;
+  }
+  </style>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="">BashChat</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container text-center">
+    <h1>BashChat</h1>
+    <div id="nickWrap">
+      <p>
+        Enter a Username:
+      </p>
+      <p id="nickError"></p>
+      <form id="setNick" class="form-inline">
+        <input size="35" class="form-control" placeholder="Username..."id="nickname" autocomplete="off"/>
+        <input type="submit" class="btn btn-primary"/>
+      </form>
+      <h2 id="hide">Now with <strong>whisper</strong>.</h2>
+      <p id="hide">Simply type /w with the users name and then the message.</p>
+        <p>Example: <strong>/w Jeet Hey jeet.</strong></p>
+
+          <footer id="footer">
+        		<h3 id="hide">&copy; BashChat. All rights reserved. Design: <a href="">Jeet Gohil</a>.</h3>
+        	</footer>
+      </div>
+    </div>
+    <div class="container-fluid">
+  <div id="contentWrap">
+    <div id="chatWrap">
+    <div class="scroll" id="chat"></div>
+      <form id="send-message" class="form-inline">
+        <input id="message" class="form-control input-lg " placeholder="Your Message..." autocomplete="off" size="100%"   />
+        <input class="btn btn-primary btn-lg" type="submit" />
+    </form>
+  </div>
+  <div class="text-center jeet3" id="users">
+  </div>
+</div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      jQuery(function($){
+        var socket = io.connect();
+        var $nickForm = $('#setNick');
+        var $nickError = $('#nickError');
+        var $nickBox = $('#nickname');
+        var $users = $('#users');
+        var $messageForm = $('#send-message');
+        var $messageBox = $('#message');
+        var $chat = $('#chat');
+        $nickForm.submit(function (e) {
+          e.preventDefault();
+          socket.emit('new user', $nickBox.val(), function(data){
+            if(data){
+              $('#nickWrap').hide();
+              $('#hide').hide();
+              $('#contentWrap').show();
+            }
+            else {
+              $nickError.html("That nickname is already taken! Try again.")
+            }
+          });
+          $nickBox.val('');
+        });
+        socket.on('usernames', function(data){
+          var html = '';
+          for (var i = 0; i < data.length; i++) {
+            html += data[i] + '</br/>'
+          }
+          $users.html(html);
+        });
+        $messageForm.submit(function(e){
+          e.preventDefault();
+          socket.emit('send message', $messageBox.val(), function(data){
+            //add stuff later
+            $chat.append('<span class="error">' + data + "</span><br/>");
+          });
+          $messageBox.val('');
+        });
+        socket.on('load old msgs' , function(docs){
+          for(var i=docs.length - 1; i >= 0; i--){
+            displayMsg(docs[i]);
+          }
+        });
+        socket.on('new message', function(data){
+        displayMsg(data);
+          });
+        function displayMsg(data){
+          $chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+        }
+        socket.on('whisper', function(data){
+          $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+        });
+
+      });
+    </script>
+  </body>
+</head>
+</html>
