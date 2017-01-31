@@ -1,5 +1,6 @@
 # BashChat
 <p>The best chat website free open source</p>
+<h2>*Please star if you liked</h2>
 <img src="http://i.imgur.com/8pkpBlX.png" alt="BashChat">
 <img src="http://i.imgur.com/k1HP599.png" alt="BashChat">
 
@@ -17,6 +18,5 @@
 <li>View on localhost:3000</li>
 <li>Enjoy</li>
 </ol>
-<h3>Please star if you liked</h3>
 <h1>FAQ/Contact/Troubleshoot</h1>
 <a>Jeetg57@gmail.com</a>
