@@ -1,5 +1,8 @@
 # BashChat
 <p>The best chat website free open source</p>
+<img src="http://i.imgur.com/8pkpBlX.png" alt="BashChat">
+<img src="http://i.imgur.com/k1HP599.png" alt="BashChat">
+
 <h1>Requirements</h1>
 <ul>
 <li>MongoDB</li>
