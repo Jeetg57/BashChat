@@ -14,4 +14,6 @@
 <li>View on localhost:3000</li>
 <li>Enjoy</li>
 </ol>
-<p>Please star if you liked</p>
+<h3>Please star if you liked</h3>
+<h1>FAQ/Contact/Troubleshoot</h1>
+<h3>Jeetg57@gmail.com</h3>
