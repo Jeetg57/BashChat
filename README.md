@@ -16,4 +16,4 @@
 </ol>
 <h3>Please star if you liked</h3>
 <h1>FAQ/Contact/Troubleshoot</h1>
-<h3>Jeetg57@gmail.com</h3>
+<a>Jeetg57@gmail.com</a>
