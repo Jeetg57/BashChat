@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html >
 <head>
   <title>BashChat</title>
@@ -288,3 +289,295 @@ h2{
   </body>
 </head>
 </html>
+=======
+<html >
+<head>
+  <title>BashChat</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
+  <style>
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e1e1e1;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #000000;
+  }
+  ::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-track:hover {
+    background: #666666;
+  }
+  ::-webkit-scrollbar-track:active {
+    background: #333333;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+.scroll {
+   width: 200px; height: 400px;
+   overflow: hidden;
+}
+    #chat{
+      font-family: 'Raleway', sans-serif;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: auto;
+      min-height: 57%;
+      max-height: 60%;
+      margin-left: 30px;
+      margin-bottom: 20px;
+
+    }
+    #contentWrap{
+      font-family: 'Raleway', sans-serif;
+      display: none;
+      font-size: 20px;
+    }
+    #chatWrap{
+      font-family: 'Raleway', sans-serif;
+      margin-left: 20px;
+      padding-top: 10px;
+      margin-right: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-width: medium;
+      border-radius: 7px;
+      float: left;
+      color: #D3D3D3;
+      margin-bottom: 40px;
+      border-style: inset;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    body{
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      color: white;
+    }
+    .error{
+      font-family: 'Raleway', sans-serif;
+      color: red;
+    }
+    .whisper{
+      font-family: 'Raleway', sans-serif;
+      color: gray;
+      font-style: italic;
+    }
+  .jeet3{
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: lightseagreen;
+    font-weight: bold;
+    overflow: auto;
+  }
+  #footer {
+    font-family: 'Raleway', sans-serif;
+		text-align: center;
+		padding: 4em 0 4em 0;
+	}
+
+    .size{
+      height: 40px;
+    }
+    nav{
+      font-family: 'Pangolin', cursive;
+    }
+  h1{
+    font-family: 'Pangolin', cursive;
+    font-size: 70px;
+    margin-top: 70px;
+  }
+  p,h2,h3{
+    font-family: 'Raleway', sans-serif;
+  }
+h2{
+  background-color: rgba(0, 0, 0, 0.04);
+}
+  .fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   padding: 20px;
+   height:auto;
+   width:100%;
+   background:rgba(51, 51, 51, 0.3);
+}
+
+/* IE 6 */
+* html #footer {
+   position:absolute;
+   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}
+.fullscreen-bg__video {
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+  </style>
+  <body>
+    <div class="fullscreen-bg">
+        <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/webm">
+            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">
+            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/ogg">
+        </video>
+        <div class="poster hidden">
+            <img src="https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?w=1920&h=1080&auto=compress&cs=tinysrgb" alt="">
+          </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="">BashChat</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container text-center">
+    <h1>BashChat</h1>
+    <div id="nickWrap">
+      <p>
+        Enter a Username:
+      </p>
+      <p id="nickError"></p>
+      <form id="setNick" class="form-inline">
+        <input size="35" class="form-control" placeholder="Username..."id="nickname" autocomplete="off"/>
+        <input type="submit" class="btn btn-primary"/>
+      </form>
+      <h2 id="hide">Now with <strong>whisper</strong>.</h2>
+      <p id="hide" >Simply type /w with the users name and then the message.</p>
+        <p>Example: <strong>/w Jeet Hey jeet.</strong></p>
+
+          <footer id="footer">
+        		<p id="hide">&copy; BashChat. All rights reserved. Design: <a href="">Jeet Gohil</a>.</p>
+        	</footer>
+      </div>
+    </div>
+    <div class="container-fluid">
+  <div id="contentWrap">
+    <div id="chatWrap">
+    <div class="scroll" id="chat"></div>
+      <form id="send-message" class="form-inline">
+        <input id="message" class="form-control input input-lg " required placeholder="Your Message..." autocomplete="off" size="100%"   />
+        <input class="btn btn-primary btn-lg" type="submit" />
+    </form>
+  </div>
+  <div class="text-center jeet3" id="users">
+  </div>
+</div>
+</div>
+</div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      jQuery(function($){
+        var socket = io.connect();
+        var $nickForm = $('#setNick');
+        var $nickError = $('#nickError');
+        var $nickBox = $('#nickname');
+        var $users = $('#users');
+        var $messageForm = $('#send-message');
+        var $messageBox = $('#message');
+        var $chat = $('#chat');
+        $nickForm.submit(function (e) {
+          e.preventDefault();
+          socket.emit('new user', $nickBox.val(), function(data){
+            if(data){
+              $('#nickWrap').hide();
+              $('#hide').hide();
+              $('#contentWrap').show();
+            }
+            else {
+              $nickError.html("That nickname is already taken! Try again.")
+            }
+          });
+          $nickBox.val('');
+        });
+        socket.on('usernames', function(data){
+          var html = '';
+          for (var i = 0; i < data.length; i++) {
+            html += data[i] + '</br/>'
+          }
+          $users.html(html);
+        });
+        $messageForm.submit(function(e){
+          e.preventDefault();
+          socket.emit('send message', $messageBox.val(), function(data){
+            //add stuff later
+            $chat.append('<span class="error">' + data + "</span><br/>");
+          });
+          $messageBox.val('');
+        });
+        socket.on('load old msgs' , function(docs){
+          for(var i=docs.length - 1; i >= 0; i--){
+            displayMsg(docs[i]);
+          }
+        });
+        socket.on('new message', function(data){
+        displayMsg(data);
+          });
+        function displayMsg(data){
+          $chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+        }
+        socket.on('whisper', function(data){
+          $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+        });
+        scaleVideoContainer();
+
+            initBannerVideoSize('.video-container .poster img');
+            initBannerVideoSize('.video-container .filter');
+            initBannerVideoSize('.video-container video');
+
+            $(window).on('resize', function() {
+                scaleVideoContainer();
+                scaleBannerVideoSize('.video-container .poster img');
+                scaleBannerVideoSize('.video-container .filter');
+                scaleBannerVideoSize('.video-container video');
+            });
+      });
+    </script>
+  </body>
+</head>
+</html>
+>>>>>>> ae633fc5704031f93395f0edd6e529e5e0783c51
