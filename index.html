@@ -1,583 +1,912 @@
-<<<<<<< HEAD
-<html >
+<!DOCTYPE html>
+<html>
+
 <head>
-  <title>BashChat</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
-  <style>
-  ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
-  ::-webkit-scrollbar-button {
-    width: 0px;
-    height: 0px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #e1e1e1;
-    border: 0px none #ffffff;
-    border-radius: 50px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #ffffff;
-  }
-  ::-webkit-scrollbar-thumb:active {
-    background: #000000;
-  }
-  ::-webkit-scrollbar-track {
-    background: #666666;
-    border: 0px none #ffffff;
-    border-radius: 50px;
-  }
-  ::-webkit-scrollbar-track:hover {
-    background: #666666;
-  }
-  ::-webkit-scrollbar-track:active {
-    background: #333333;
-  }
-  ::-webkit-scrollbar-corner {
-    background: transparent;
-  }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>BashChat - The Modern Day Chat App</title>
+    <script src="https://use.fontawesome.com/9e50049ae6.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
-.scroll {
-   width: 200px; height: 400px;
-   overflow: hidden;
-}
-    #chat{
-      font-family: 'Raleway', sans-serif;
-      width: 100%;
-      overflow-x: auto;
-      overflow-y: auto;
-      min-height: 57%;
-      max-height: 60%;
-      margin-left: 30px;
-      margin-bottom: 20px;
+    <style>
 
-    }
-    #contentWrap{
-      font-family: 'Raleway', sans-serif;
-      display: none;
-      font-size: 20px;
-    }
-    #chatWrap{
-      font-family: 'Raleway', sans-serif;
-      margin-left: 20px;
-      padding-top: 10px;
-      margin-right: 20px;
-      padding-left: 20px;
-      padding-right: 20px;
-      border-width: medium;
-      border-radius: 7px;
-      float: left;
-      color: #D3D3D3;
-      margin-bottom: 40px;
-      border-style: inset;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    body{
-      background-repeat: no-repeat;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-      color: white;
-    }
-    .error{
-      font-family: 'Raleway', sans-serif;
-      color: red;
-    }
-    .whisper{
-      font-family: 'Raleway', sans-serif;
-      color: gray;
-      font-style: italic;
-    }
-  .jeet3{
-    font-family: 'Raleway', sans-serif;
-    font-size: 20px;
-    color: lightseagreen;
-    font-weight: bold;
-    overflow: auto;
-  }
-  #footer {
-    font-family: 'Raleway', sans-serif;
-		text-align: center;
-		padding: 4em 0 4em 0;
-	}
-
-    .size{
-      height: 40px;
-    }
-    nav{
-      font-family: 'Pangolin', cursive;
-    }
-  h1{
-    font-family: 'Pangolin', cursive;
-    font-size: 70px;
-    margin-top: 70px;
-  }
-  p,h2,h3{
-    font-family: 'Raleway', sans-serif;
-  }
-h2{
-  background-color: rgba(0, 0, 0, 0.04);
-}
-  .fullscreen-bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -100;
-}
-#footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   padding: 20px;
-   height:auto;
-   width:100%;
-   background:rgba(51, 51, 51, 0.3);
-}
-
-/* IE 6 */
-* html #footer {
-   position:absolute;
-   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
-}
-.fullscreen-bg__video {
-    position: absolute;
-    width: auto;
-    height: auto;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-}
-
-  </style>
-  <body>
-    <div class="fullscreen-bg">
-        <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
-            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/webm">
-            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">
-            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/ogg">
-        </video>
-        <div class="poster hidden">
-            <img src="https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?w=1920&h=1080&auto=compress&cs=tinysrgb" alt="">
-          </div>
-    </div>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="">BashChat</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container text-center">
-    <h1>BashChat</h1>
-    <div id="nickWrap">
-      <p>
-        Enter a Username:
-      </p>
-      <p id="nickError"></p>
-      <form id="setNick" class="form-inline">
-        <input size="35" class="form-control" placeholder="Username..."id="nickname" autocomplete="off"/>
-        <input type="submit" class="btn btn-primary"/>
-      </form>
-      <h2 id="hide">Now with <strong>whisper</strong>.</h2>
-      <p id="hide" >Simply type /w with the users name and then the message.</p>
-        <p>Example: <strong>/w Jeet Hey jeet.</strong></p>
-
-          <footer id="footer">
-        		<p id="hide">&copy; BashChat. All rights reserved. Design: <a href="">Jeet Gohil</a>.</p>
-        	</footer>
-      </div>
-    </div>
-    <div class="container-fluid">
-  <div id="contentWrap">
-    <div id="chatWrap">
-    <div class="scroll" id="chat"></div>
-      <form id="send-message" class="form-inline">
-        <input id="message" class="form-control input input-lg " required placeholder="Your Message..." autocomplete="off" size="100%"   />
-        <input class="btn btn-primary btn-lg" type="submit" />
-    </form>
-  </div>
-  <div class="text-center jeet3" id="users">
-  </div>
-</div>
-</div>
-</div>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      jQuery(function($){
-        var socket = io.connect();
-        var $nickForm = $('#setNick');
-        var $nickError = $('#nickError');
-        var $nickBox = $('#nickname');
-        var $users = $('#users');
-        var $messageForm = $('#send-message');
-        var $messageBox = $('#message');
-        var $chat = $('#chat');
-        $nickForm.submit(function (e) {
-          e.preventDefault();
-          socket.emit('new user', $nickBox.val(), function(data){
-            if(data){
-              $('#nickWrap').hide();
-              $('#hide').hide();
-              $('#contentWrap').show();
-            }
-            else {
-              $nickError.html("That nickname is already taken! Try again.")
-            }
-          });
-          $nickBox.val('');
-        });
-        socket.on('usernames', function(data){
-          var html = '';
-          for (var i = 0; i < data.length; i++) {
-            html += data[i] + '</br/>'
-          }
-          $users.html(html);
-        });
-        $messageForm.submit(function(e){
-          e.preventDefault();
-          socket.emit('send message', $messageBox.val(), function(data){
-            //add stuff later
-            $chat.append('<span class="error">' + data + "</span><br/>");
-          });
-          $messageBox.val('');
-        });
-        socket.on('load old msgs' , function(docs){
-          for(var i=docs.length - 1; i >= 0; i--){
-            displayMsg(docs[i]);
-          }
-        });
-        socket.on('new message', function(data){
-        displayMsg(data);
-          });
-        function displayMsg(data){
-          $chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+         ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
         }
-        socket.on('whisper', function(data){
-          $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
-        });
-        scaleVideoContainer();
 
-            initBannerVideoSize('.video-container .poster img');
-            initBannerVideoSize('.video-container .filter');
-            initBannerVideoSize('.video-container video');
-
-            $(window).on('resize', function() {
-                scaleVideoContainer();
-                scaleBannerVideoSize('.video-container .poster img');
-                scaleBannerVideoSize('.video-container .filter');
-                scaleBannerVideoSize('.video-container video');
-            });
-      });
-    </script>
-  </body>
-</head>
-</html>
-=======
-<html >
-<head>
-  <title>BashChat</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
-  <style>
-  ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
-  ::-webkit-scrollbar-button {
-    width: 0px;
-    height: 0px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #e1e1e1;
-    border: 0px none #ffffff;
-    border-radius: 50px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #ffffff;
-  }
-  ::-webkit-scrollbar-thumb:active {
-    background: #000000;
-  }
-  ::-webkit-scrollbar-track {
-    background: #666666;
-    border: 0px none #ffffff;
-    border-radius: 50px;
-  }
-  ::-webkit-scrollbar-track:hover {
-    background: #666666;
-  }
-  ::-webkit-scrollbar-track:active {
-    background: #333333;
-  }
-  ::-webkit-scrollbar-corner {
-    background: transparent;
-  }
-
-.scroll {
-   width: 200px; height: 400px;
-   overflow: hidden;
-}
-    #chat{
-      font-family: 'Raleway', sans-serif;
-      width: 100%;
-      overflow-x: auto;
-      overflow-y: auto;
-      min-height: 57%;
-      max-height: 60%;
-      margin-left: 30px;
-      margin-bottom: 20px;
-
-    }
-    #contentWrap{
-      font-family: 'Raleway', sans-serif;
-      display: none;
-      font-size: 20px;
-    }
-    #chatWrap{
-      font-family: 'Raleway', sans-serif;
-      margin-left: 20px;
-      padding-top: 10px;
-      margin-right: 20px;
-      padding-left: 20px;
-      padding-right: 20px;
-      border-width: medium;
-      border-radius: 7px;
-      float: left;
-      color: #D3D3D3;
-      margin-bottom: 40px;
-      border-style: inset;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    body{
-      background-repeat: no-repeat;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-      color: white;
-    }
-    .error{
-      font-family: 'Raleway', sans-serif;
-      color: red;
-    }
-    .whisper{
-      font-family: 'Raleway', sans-serif;
-      color: gray;
-      font-style: italic;
-    }
-  .jeet3{
-    font-family: 'Raleway', sans-serif;
-    font-size: 20px;
-    color: lightseagreen;
-    font-weight: bold;
-    overflow: auto;
-  }
-  #footer {
-    font-family: 'Raleway', sans-serif;
-		text-align: center;
-		padding: 4em 0 4em 0;
-	}
-
-    .size{
-      height: 40px;
-    }
-    nav{
-      font-family: 'Pangolin', cursive;
-    }
-  h1{
-    font-family: 'Pangolin', cursive;
-    font-size: 70px;
-    margin-top: 70px;
-  }
-  p,h2,h3{
-    font-family: 'Raleway', sans-serif;
-  }
-h2{
-  background-color: rgba(0, 0, 0, 0.04);
-}
-  .fullscreen-bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -100;
-}
-#footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   padding: 20px;
-   height:auto;
-   width:100%;
-   background:rgba(51, 51, 51, 0.3);
-}
-
-/* IE 6 */
-* html #footer {
-   position:absolute;
-   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
-}
-.fullscreen-bg__video {
-    position: absolute;
-    width: auto;
-    height: auto;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-}
-
-  </style>
-  <body>
-    <div class="fullscreen-bg">
-        <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
-            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/webm">
-            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">
-            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/ogg">
-        </video>
-        <div class="poster hidden">
-            <img src="https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?w=1920&h=1080&auto=compress&cs=tinysrgb" alt="">
-          </div>
-    </div>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="">BashChat</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container text-center">
-    <h1>BashChat</h1>
-    <div id="nickWrap">
-      <p>
-        Enter a Username:
-      </p>
-      <p id="nickError"></p>
-      <form id="setNick" class="form-inline">
-        <input size="35" class="form-control" placeholder="Username..."id="nickname" autocomplete="off"/>
-        <input type="submit" class="btn btn-primary"/>
-      </form>
-      <h2 id="hide">Now with <strong>whisper</strong>.</h2>
-      <p id="hide" >Simply type /w with the users name and then the message.</p>
-        <p>Example: <strong>/w Jeet Hey jeet.</strong></p>
-
-          <footer id="footer">
-        		<p id="hide">&copy; BashChat. All rights reserved. Design: <a href="">Jeet Gohil</a>.</p>
-        	</footer>
-      </div>
-    </div>
-    <div class="container-fluid">
-  <div id="contentWrap">
-    <div id="chatWrap">
-    <div class="scroll" id="chat"></div>
-      <form id="send-message" class="form-inline">
-        <input id="message" class="form-control input input-lg " required placeholder="Your Message..." autocomplete="off" size="100%"   />
-        <input class="btn btn-primary btn-lg" type="submit" />
-    </form>
-  </div>
-  <div class="text-center jeet3" id="users">
-  </div>
-</div>
-</div>
-</div>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      jQuery(function($){
-        var socket = io.connect();
-        var $nickForm = $('#setNick');
-        var $nickError = $('#nickError');
-        var $nickBox = $('#nickname');
-        var $users = $('#users');
-        var $messageForm = $('#send-message');
-        var $messageBox = $('#message');
-        var $chat = $('#chat');
-        $nickForm.submit(function (e) {
-          e.preventDefault();
-          socket.emit('new user', $nickBox.val(), function(data){
-            if(data){
-              $('#nickWrap').hide();
-              $('#hide').hide();
-              $('#contentWrap').show();
-            }
-            else {
-              $nickError.html("That nickname is already taken! Try again.")
-            }
-          });
-          $nickBox.val('');
-        });
-        socket.on('usernames', function(data){
-          var html = '';
-          for (var i = 0; i < data.length; i++) {
-            html += data[i] + '</br/>'
-          }
-          $users.html(html);
-        });
-        $messageForm.submit(function(e){
-          e.preventDefault();
-          socket.emit('send message', $messageBox.val(), function(data){
-            //add stuff later
-            $chat.append('<span class="error">' + data + "</span><br/>");
-          });
-          $messageBox.val('');
-        });
-        socket.on('load old msgs' , function(docs){
-          for(var i=docs.length - 1; i >= 0; i--){
-            displayMsg(docs[i]);
-          }
-        });
-        socket.on('new message', function(data){
-        displayMsg(data);
-          });
-        function displayMsg(data){
-          $chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+         ::-webkit-scrollbar-button {
+            width: 0px;
+            height: 0px;
         }
-        socket.on('whisper', function(data){
-          $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
-        });
-        scaleVideoContainer();
 
-            initBannerVideoSize('.video-container .poster img');
-            initBannerVideoSize('.video-container .filter');
-            initBannerVideoSize('.video-container video');
+         ::-webkit-scrollbar-thumb {
+            background: #e1e1e1;
+            border: 0px none #ffffff;
+            border-radius: 50px;
+        }
 
-            $(window).on('resize', function() {
-                scaleVideoContainer();
-                scaleBannerVideoSize('.video-container .poster img');
-                scaleBannerVideoSize('.video-container .filter');
-                scaleBannerVideoSize('.video-container video');
+         ::-webkit-scrollbar-thumb:hover {
+            background: #ffffff;
+        }
+
+         ::-webkit-scrollbar-thumb:active {
+            background: #000000;
+        }
+
+         ::-webkit-scrollbar-track {
+            background: #666666;
+            border: 0px none #ffffff;
+            border-radius: 50px;
+        }
+
+         ::-webkit-scrollbar-track:hover {
+            background: #666666;
+        }
+
+         ::-webkit-scrollbar-track:active {
+            background: #333333;
+        }
+
+         ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+        .scroll {
+            height: 400px;
+            width: 200px;
+            overflow: hidden;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Raleway', sans-serif;
+            Helvetica,
+            Arial,
+            sans-serif;
+            background: url("https://wallpaperscraft.com/image/face_abstract_shiny_dark_96407_3840x2160.jpg") no-repeat bottom center scroll;
+            background-color:black;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+            color: white;
+        }
+        html {
+
+            width: 100%;
+            height: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0 0 35px;
+            text-transform: uppercase;
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin: 0 0 25px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        #chat {
+            font-family: 'Raleway', sans-serif;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            max-height: 60%;
+            min-height: 57%;
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        #contentWrap {
+            font-family: 'Raleway', sans-serif;
+            display: none;
+            font-size: 20px;
+        }
+
+        #chatWrap {
+            font-family: 'Raleway', sans-serif;
+            margin-left: 20px;
+            padding-top: 10px;
+            margin-right: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-width: medium;
+            border-radius: 7px;
+            float: left;
+            color: #08BDBD;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-style: inset;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .error {
+            font-family: 'Raleway', sans-serif;
+            color: crimson;
+        }
+
+        .whisper {
+            font-family: 'Raleway', sans-serif;
+            color: #ec4e91;
+            font-style: italic;
+        }
+
+        .jeet3 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            overflow: auto;
+            background-color: rgba(25,147,147,0.2);       
+          	border-radius: 7px;
+	        box-shadow: 0px 4px gray, 0px 10px 15px rgba(0, 0, 0, 0.6);
+            height: 500px;
+
+        }
+
+        @media (min-width: 768px) {
+            p {
+                margin: 0 0 35px;
+                font-size: 20px;
+                line-height: 1.6;
+            }
+        }
+
+        a {
+            color: #42DCA3;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: none;
+            color: #1d9b6c;
+        }
+
+        .light {
+            font-weight: 400;
+        }
+
+        .navbar-custom {
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: black;
+        }
+
+        .navbar-custom .navbar-toggle {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+        }
+
+        .navbar-custom .navbar-toggle:focus,
+        .navbar-custom .navbar-toggle:active {
+            outline: none;
+        }
+
+        .navbar-custom .navbar-brand {
+            font-weight: 700;
+        }
+
+        .navbar-custom .navbar-brand:focus {
+            outline: none;
+        }
+
+        .navbar-custom a {
+            color: white;
+        }
+
+        .navbar-custom .nav li a {
+            -webkit-transition: background 0.3s ease-in-out;
+            -moz-transition: background 0.3s ease-in-out;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .navbar-custom .nav li a:hover {
+            color: rgba(255, 255, 255, 0.8);
+            outline: none;
+            background-color: transparent;
+        }
+        .makeitbetter{
+            margin-right: 30px;
+            margin-left: 10px;
+        }
+
+        .navbar-custom .nav li a:focus,
+        .navbar-custom .nav li a:active {
+            outline: none;
+            background-color: transparent;
+        }
+
+        .navbar-custom .nav li.active {
+            outline: none;
+        }
+
+        .navbar-custom .nav li.active a {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar-custom .nav li.active a:hover {
+            color: white;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-custom {
+                padding: 20px 0;
+                border-bottom: none;
+                letter-spacing: 1px;
+                background: transparent;
+                -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+                -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+                transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+            }
+            .navbar-custom.top-nav-collapse {
+                padding: 0;
+                background: black;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .intro {
+            display: table;
+            width: 100%;
+            height: auto;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            background: url("https://wallpaperscraft.com/image/face_abstract_shiny_dark_96407_3840x2160.jpg") no-repeat bottom center scroll;
+            background-color: black;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+        }
+
+        .intro .intro-body {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .float{
+            float: right;
+        }
+        .intro .intro-body .brand-heading {
+            font-size: 45px;
+        }
+
+        .intro .intro-body .intro-text {
+            font-size: 18px;
+        }
+
+        @media (min-width: 768px) {
+            .intro {
+                height: 100%;
+                padding: 0;
+            }
+            .intro .intro-body .brand-heading {
+                font-size: 100px;
+            }
+            .intro .intro-body .intro-text {
+                font-size: 26px;
+            }
+        }
+
+        .btn-circle {
+            width: 70px;
+            height: 70px;
+            margin-top: 15px;
+            padding: 7px 16px;
+            border: 2px solid white;
+            border-radius: 100% !important;
+            font-size: 40px;
+            color: white;
+            background: transparent;
+            -webkit-transition: background 0.3s ease-in-out;
+            -moz-transition: background 0.3s ease-in-out;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .btn-circle:hover,
+        .btn-circle:focus {
+            outline: none;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-circle i.animated {
+            -webkit-transition-property: -webkit-transform;
+            -webkit-transition-duration: 1s;
+            -moz-transition-property: -moz-transform;
+            -moz-transition-duration: 1s;
+        }
+
+        .btn-circle:hover i.animated {
+            -webkit-animation-name: pulse;
+            -moz-animation-name: pulse;
+            -webkit-animation-duration: 1.5s;
+            -moz-animation-duration: 1.5s;
+            -webkit-animation-iteration-count: infinite;
+            -moz-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            -moz-animation-timing-function: linear;
+        }
+
+        @-webkit-keyframes pulse {
+            0% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+            50% {
+                -webkit-transform: scale(1.2);
+                transform: scale(1.2);
+            }
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @-moz-keyframes pulse {
+            0% {
+                -moz-transform: scale(1);
+                transform: scale(1);
+            }
+            50% {
+                -moz-transform: scale(1.2);
+                transform: scale(1.2);
+            }
+            100% {
+                -moz-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        .content-section {
+            padding-top: 100px;
+        }
+
+        .download-section {
+            width: 100%;
+            padding: 50px 0;
+            color: white;
+            background: url("https://images.pexels.com/photos/350776/pexels-photo-350776.jpeg?w=1920&h=1080&auto=compress&cs=tinysrgb") no-repeat center center scroll;
+            background-color: black;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+        }
+
+        #map {
+            width: 100%;
+            height: 200px;
+            margin-top: 100px;
+        }
+
+        @media (min-width: 767px) {
+            .content-section {
+                padding-top: 150px;
+            }
+            .download-section {
+                padding: 100px 0;
+            }
+            #map {
+                height: 400px;
+                margin-top: 250px;
+            }
+        }
+
+        .btn {
+            text-transform: uppercase;
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            border-radius: 3px;
+        }
+
+        .btn-default {
+            border: 1px solid #42DCA3;
+            color: #42DCA3;
+            background-color: transparent;
+        }
+
+        .btn-default:hover,
+        .btn-default:focus {
+            border: 1px solid #42DCA3;
+            outline: none;
+            color: black;
+            background-color: #42DCA3;
+        }
+
+        ul.banner-social-buttons {
+            margin-top: 0;
+        }
+
+        @media (max-width: 1199px) {
+            ul.banner-social-buttons {
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            ul.banner-social-buttons li {
+                display: block;
+                margin-bottom: 20px;
+                padding: 0;
+            }
+            ul.banner-social-buttons li:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        footer {
+            padding: 50px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+         ::-moz-selection {
+            text-shadow: none;
+            background: #fcfcfc;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+         ::selection {
+            text-shadow: none;
+            background: #fcfcfc;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        img::selection {
+            background: transparent;
+        }
+
+        img::-moz-selection {
+            background: transparent;
+        }
+
+        body {
+            webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand page-scroll" href="">
+                        <i class="fa fa-play-circle"></i> <span class="light">Bash</span>Chat
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a href=""></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about"><i class="fa fa-info-circle" aria-hidden="true"></i>  About Us</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#download"><i class="fa fa-download" aria-hidden="true"></i>  Download</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#contact"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>  Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <header id="hide" class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h1 id="hide" class="brand-heading">Bashchat</h1>
+
+
+                            <div id="nickWrap">
+                                <h3>
+                                    Enter a Username:
+                                </h3>
+                                <p id="nickError"></p>
+                                <form id="setNick" class="form-inline">
+                                    <input size="35" class="form-control" placeholder="Username..." id="nickname" autocomplete="off" required/>
+                                    <button type="submit" class="btn btn-primary">Submit <i class="fa fa-lg fa-angle-double-right" aria-hidden="true"></i></button>
+                                </form>
+                                <br />
+                                <p id="arrow" class="intro-text">
+                                    <a href="#about" class="btn btn-circle page-scroll">
+                                        <i class="fa fa-angle-double-down animated"></i>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </header>
+        <section id="about" id="hide" class="container content-section text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1>About BashChat</h1>
+                    <hr />
+                    <h4>Our Mission</h4>
+                    <p>To Be The Best Chatting Website/App in history</p>
+                    <hr />
+                    <p>
+                        BashChat, the modern day chat website/application (AKA web application or web app: a web application or web app is a client–server software application in which the client (or user interface) runs in a web browser), was made using various software and
+                        packages such as node.js, socket.io and mongoDB.
+                        <p>
+                            Created by Jeet Gohil.
+                        </p>
+                        <p>
+                            We Are Open-Source! Let's Celebrate!!
+                        </p>
+                </div>
+            </div>
+        </section>
+        <!-- Download Section -->
+        <section id="download" class="content-section text-center">
+            <div class="download-section">
+                <div class="container">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2>Download BashChat</h2>
+                        <p>You can download BashChat for free on Github.</p>
+                        <a href="https://github.com/Jeetg57/BashChat" class="btn btn-default btn-lg">Visit Github Download Page</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="container content-section text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Contact BashChat</h2>
+                    <hr />
+                    <p>Feel free to email us to provide some feedback on our website, give us suggestions for new ideas, or to just say hello!</p>
+                    <p><a href="jeetg57@gmail.com">Jeetg57@gmail.com</a>
+                    </p>
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/jeetg57" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Jeetg57" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="https://codepen.io/jeetg57/" class="btn btn-default btn-lg"><i class="fa fa-codepen fa-fw"></i> <span class="network-name">Codepen</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.freecodecamp.com/jeetg57" class="btn btn-default btn-lg"><i class="fa fa-free-code-camp fa-fw"></i> <span class="network-name">Free Code Camp</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="container text-center">
+                <p>Copyright &copy; BashChat 2017</p>
+            </div>
+        </footer>
+        </div>
+        </div>
+        <div class="container-fluid">
+            <div id="contentWrap">
+                <div class="makeitbetter">
+                <h5 class="col-sm-6">You Are Online!</h5>
+                <h5 class="float">ONLINE USERS</h5>
+                <br />
+                <br />
+            </div>
+                <div id="chatWrap">
+                    <div class="scroll" id="chat"><p id="date"></p></div>
+                    <form id="send-message" class="form-inline">
+                        <input id="message" class="form-control input input-lg " required placeholder="Your Message..." autocomplete="off" size="100%" />
+                        <button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
+                    </form>
+                </div>
+                <div class="text-center jeet3" id="users">
+                </div>
+        </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            jQuery(function($) {
+                var socket = io.connect();
+                var $nickForm = $('#setNick');
+                var $nickError = $('#nickError');
+                var $nickBox = $('#nickname');
+                var $users = $('#users');
+                var $messageForm = $('#send-message');
+                var $messageBox = $('#message');
+                var $chat = $('#chat');
+                var $arrow = $('#arrow');
+                var $about = $('#about');
+                var $contact = $('#contact');
+                var $download = $('#download');
+                $nickForm.submit(function(e) {
+                    e.preventDefault();
+                    socket.emit('new user', $nickBox.val(), function(data) {
+                        if (data) {
+                            $('#nickWrap').hide();
+                            $('#hide').hide();
+                            $('#arrow').hide();
+                            $('#about').hide();
+                            $('#contact').hide();
+                            $('#download').hide();
+                            $('#contentWrap').show();
+                        } else {
+                            $nickError.html("That nickname is already taken! Try again.")
+                        }
+                    });
+                    $nickBox.val('');
+                });
+                socket.on('usernames', function(data) {
+                    var html = '';
+                    for (var i = 0; i < data.length; i++) {
+                        html += data[i] + '</br/>'
+                    }
+                    $users.html(html);
+                });
+                $messageForm.submit(function(e) {
+                    e.preventDefault();
+                    socket.emit('send message', $messageBox.val(), function(data) {
+                        //add stuff later
+                        $chat.append('<span class="error">' + data + "</span><br/>");
+                    });
+                    $messageBox.val('');
+                });
+                socket.on('load old msgs', function(docs) {
+                    for (var i = docs.length - 1; i >= 0; i--) {
+                        displayMsg(docs[i]);
+                    }
+                });
+                socket.on('new message', function(data) {
+                    displayMsg(data);
+                });
+
+                function displayMsg(data) {
+                    $chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg  + "</span><br/>");
+                }
+                socket.on('whisper', function(data) {
+                    $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+                });
+
+                function collapseNavbar() {
+                    if ($(".navbar").offset().top > 50) {
+                        $(".navbar-fixed-top").addClass("top-nav-collapse");
+                    } else {
+                        $(".navbar-fixed-top").removeClass("top-nav-collapse");
+                    }
+                }
+
+                $(window).scroll(collapseNavbar);
+                $(document).ready(collapseNavbar);
+
+                // jQuery for page scrolling feature - requires jQuery Easing plugin (check below)
+                $(function() {
+                    $('a.page-scroll').bind('click', function(event) {
+                        var $anchor = $(this);
+                        $('html, body').stop().animate({
+                            scrollTop: $($anchor.attr('href')).offset().top
+                        }, 1500, 'easeInOutExpo');
+                        event.preventDefault();
+                    });
+                });
+
+                // Closes the Responsive Menu on Menu Item Click
+                $('.navbar-collapse ul li a').click(function() {
+                    $(".navbar-collapse").collapse('hide');
+                });
+                // jQuery to collapse the navbar on scroll
+                function collapseNavbar() {
+                    if ($(".navbar").offset().top > 50) {
+                        $(".navbar-fixed-top").addClass("top-nav-collapse");
+                    } else {
+                        $(".navbar-fixed-top").removeClass("top-nav-collapse");
+                    }
+                }
+
+                $(window).scroll(collapseNavbar);
+                $(document).ready(collapseNavbar);
+                //easing function
+                jQuery.extend(jQuery.easing, {
+                    def: 'easeOutQuad',
+                    swing: function(x, t, b, c, d) {
+                        //alert(jQuery.easing.default);
+                        return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+                    },
+                    easeInQuad: function(x, t, b, c, d) {
+                        return c * (t /= d) * t + b;
+                    },
+                    easeOutQuad: function(x, t, b, c, d) {
+                        return -c * (t /= d) * (t - 2) + b;
+                    },
+                    easeInOutQuad: function(x, t, b, c, d) {
+                        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+                        return -c / 2 * ((--t) * (t - 2) - 1) + b;
+                    },
+                    easeInCubic: function(x, t, b, c, d) {
+                        return c * (t /= d) * t * t + b;
+                    },
+                    easeOutCubic: function(x, t, b, c, d) {
+                        return c * ((t = t / d - 1) * t * t + 1) + b;
+                    },
+                    easeInOutCubic: function(x, t, b, c, d) {
+                        if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
+                        return c / 2 * ((t -= 2) * t * t + 2) + b;
+                    },
+                    easeInQuart: function(x, t, b, c, d) {
+                        return c * (t /= d) * t * t * t + b;
+                    },
+                    easeOutQuart: function(x, t, b, c, d) {
+                        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+                    },
+                    easeInOutQuart: function(x, t, b, c, d) {
+                        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
+                        return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+                    },
+                    easeInQuint: function(x, t, b, c, d) {
+                        return c * (t /= d) * t * t * t * t + b;
+                    },
+                    easeOutQuint: function(x, t, b, c, d) {
+                        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+                    },
+                    easeInOutQuint: function(x, t, b, c, d) {
+                        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
+                        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+                    },
+                    easeInSine: function(x, t, b, c, d) {
+                        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
+                    },
+                    easeOutSine: function(x, t, b, c, d) {
+                        return c * Math.sin(t / d * (Math.PI / 2)) + b;
+                    },
+                    easeInOutSine: function(x, t, b, c, d) {
+                        return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+                    },
+                    easeInExpo: function(x, t, b, c, d) {
+                        return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+                    },
+                    easeOutExpo: function(x, t, b, c, d) {
+                        return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+                    },
+                    easeInOutExpo: function(x, t, b, c, d) {
+                        if (t == 0) return b;
+                        if (t == d) return b + c;
+                        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+                        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+                    },
+                    easeInCirc: function(x, t, b, c, d) {
+                        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+                    },
+                    easeOutCirc: function(x, t, b, c, d) {
+                        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
+                    },
+                    easeInOutCirc: function(x, t, b, c, d) {
+                        if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+                        return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+                    },
+                    easeInElastic: function(x, t, b, c, d) {
+                        var s = 1.70158;
+                        var p = 0;
+                        var a = c;
+                        if (t == 0) return b;
+                        if ((t /= d) == 1) return b + c;
+                        if (!p) p = d * .3;
+                        if (a < Math.abs(c)) {
+                            a = c;
+                            var s = p / 4;
+                        } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+                        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+                    },
+                    easeOutElastic: function(x, t, b, c, d) {
+                        var s = 1.70158;
+                        var p = 0;
+                        var a = c;
+                        if (t == 0) return b;
+                        if ((t /= d) == 1) return b + c;
+                        if (!p) p = d * .3;
+                        if (a < Math.abs(c)) {
+                            a = c;
+                            var s = p / 4;
+                        } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+                        return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+                    },
+                    easeInOutElastic: function(x, t, b, c, d) {
+                        var s = 1.70158;
+                        var p = 0;
+                        var a = c;
+                        if (t == 0) return b;
+                        if ((t /= d / 2) == 2) return b + c;
+                        if (!p) p = d * (.3 * 1.5);
+                        if (a < Math.abs(c)) {
+                            a = c;
+                            var s = p / 4;
+                        } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+                        if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+                        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
+                    },
+                    easeInBack: function(x, t, b, c, d, s) {
+                        if (s == undefined) s = 1.70158;
+                        return c * (t /= d) * t * ((s + 1) * t - s) + b;
+                    },
+                    easeOutBack: function(x, t, b, c, d, s) {
+                        if (s == undefined) s = 1.70158;
+                        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+                    },
+                    easeInOutBack: function(x, t, b, c, d, s) {
+                        if (s == undefined) s = 1.70158;
+                        if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
+                        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+                    },
+                    easeInBounce: function(x, t, b, c, d) {
+                        return c - jQuery.easing.easeOutBounce(x, d - t, 0, c, d) + b;
+                    },
+                    easeOutBounce: function(x, t, b, c, d) {
+                        if ((t /= d) < (1 / 2.75)) {
+                            return c * (7.5625 * t * t) + b;
+                        } else if (t < (2 / 2.75)) {
+                            return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
+                        } else if (t < (2.5 / 2.75)) {
+                            return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+                        } else {
+                            return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+                        }
+                    },
+                    easeInOutBounce: function(x, t, b, c, d) {
+                        if (t < d / 2) return jQuery.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
+                        return jQuery.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+                    }
+                });
+                // jQuery for page scrolling feature - requires jQuery Easing plugin
+                $(function() {
+                    $('a.page-scroll').bind('click', function(event) {
+                        var $anchor = $(this);
+                        $('html, body').stop().animate({
+                            scrollTop: $($anchor.attr('href')).offset().top
+                        }, 1500, 'easeInOutExpo');
+                        event.preventDefault();
+                    });
+                });
+
+                // Closes the Responsive Menu on Menu Item Click
+                $('.navbar-collapse ul li a').click(function() {
+                    $(".navbar-collapse").collapse('hide');
+                });
+
             });
-      });
-    </script>
-  </body>
+        </script>
+    </body>
 </head>
+
 </html>
->>>>>>> ae633fc5704031f93395f0edd6e529e5e0783c51
