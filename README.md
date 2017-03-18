@@ -7,7 +7,7 @@
 <li>MongoDB</li>
 <li>Socket.io</li>
 <li>ExpressJs</li>
-<li>Code editing software (like we never knew that)</li>
+<li>Code editing software</li>
 </ul>
 <h2>How to use</h2>
 <ol>
