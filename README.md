@@ -1,9 +1,7 @@
 # BashChat
 <p>The best chat website free and open-source</p>
 <h2>*Please star if you liked</h2>
-<img src="http://i.imgur.com/8pkpBlX.png" alt="BashChat">
-<img src="http://i.imgur.com/k1HP599.png" alt="BashChat">
-
+<img src="http://i.imgur.com/f2Zj3jh.png" alt="BashChat">
 <h2>Requirements</h2>
 <ul>
 <li>MongoDB</li>
@@ -14,7 +12,7 @@
 <h2>How to use</h2>
 <ol>
 <li>Start Mongod with command prompt</li>
-<li>run 'node app.js' in command prompt</li>
+<li>run 'node index.js' in command prompt</li>
 <li>View on localhost:3000</li>
 <li>Enjoy</li>
 </ol>
